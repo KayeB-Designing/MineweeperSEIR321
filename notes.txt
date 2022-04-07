@@ -1,0 +1,215 @@
+
+
+addEventListener() Notes
+
+document.getElementByIdID("idName") 
+
+or
+
+document.querySelector("idName")
+
+or however to grab the element we want to listen to
+
+__________________________________________________________________________________________________________________________
+
+the add event listener method attaches an event handler to the speciified element  without overriding the existing event handlers. 
+    - the on click method only allows one event handler at a time
+        - the second one will overwrite the first
+        - also can't set the useCapture either
+
+element.addEventListener(event, function, useCapture)
+    - let varName = document.getElementByIdID("myHTMLelementIDname")
+        - grab the element
+    - varName.addEventListener("click"), function(){varName.style.background="lightblue"}, true);
+        - add event listener that takes a click event
+            - when a click happens a fn will be invoked that sets the background of selected element color to light blue
+        - set useCapture to true
+            -
+
+
+element = 
+	- html element to listen to
+
+.addEventListener(*parameters*) = 
+	- passes the event to the function and the *optional* capture (or bubbling)  grabs the instances of event occurence 
+		- (ie on click, captures clicks)
+
+(event, XXXXXX, XXXXXX) = 
+	- type of event to listen for
+		- (ie click or mouseover etc) ("click")
+
+(XXXXXX, function, XXXXXX) = 
+	- can pass a defined fn or an anonymous fn
+        - defined fn (XXXXXX, functionName, XXXXXX)
+        - anonymous fn
+            - standard fn (XXXXXX, function(){code clock}, XXXXXX)
+            - arrow fn (XXXXXX, () => {}, XXXXXX)
+
+
+(XXXXXX, XXXXXX, *optional* event capturing) = 
+    - uses a boolean value that specifies whether or not use use event bubbling or event capturing
+        - this is an optional parameter which defaults to false if not set to true
+            - setting this parameter to true allows us to do some fun event linking easily
+                - like event inception and asyncronous event paths triggered by on initial event
+                    - example: using event listeners inside functions
+
+                        // grab html element as a usable variable
+
+                    let varName = document.getElementByIdID("myHTMLelementIDname")
+                    let otherVarName = document.getElementByIdID("myOtherHTMLelementIDname")
+                        
+                        // create the function when which evoked creates the event listener
+                            // example function firstEvent(){}
+
+                    varName.addEventListener("click"), mainEvent(){
+
+                                // this code be any code block not just the element styling
+
+                                varName.style.background="lightblue"
+                                
+                                }, true);
+
+                        } // this is the main triggering event // event[0]
+
+                        // now that the first function is set pull it out of the event listener + append it underneath
+                        // just use the function name as a variarble 
+
+                    varName.addEventListener("click"), mainEvent, true);
+
+                    function mainEvent() {
+                        varName.style.background="lightblue"
+                    }
+
+
+                        // now create event listenor and define its function
+
+                    otherVarName.addEventListener("mouseover"), firstAttraction);
+
+                    function firstAttraction () {} 
+                    
+                                // this is your second event that will happen after the first (new first if splitting the path of action (asyncronous event paths)) event[1]
+                                // if accessing a different HTML element grab it now or earlier
+
+                    function firstAttraction () {
+                        otherVarName.style.background = "darkkhaki"
+                    }
+
+                    // to set a third event in the chain set use capture to true in the second event listener
+
+                    otherVarName.addEventListener("mouseover"), firstAttraction, true);
+
+                    // create third event in chain
+
+                    otherOtherVarName.addEventListener("click", firstAct, true) // set true now if continuing chain 
+
+                    function firstAct () {
+                        otherOtherVarName.textContent = "some text will some up"
+                    }
+
+                    otherOtherVarName.addEventListener("click", Act1scene1, true)
+
+                    function Act1scene1() {
+
+                                        // set current text content equal too the content already assingned plus the new content added on the end
+
+                        otherOtherVarName.textContent = otherOtherVarName.textContent += "then some more text will some up"
+                    }
+
+                    otherOtherVarName.addEventListener("click", Act1scene2, true)
+
+                    function Act1scene2() {
+                        otherOtherVarName.textContent = otherOtherVarName.textContent += "then even more text will some up"
+                    }
+
+
+        - use capture being set to false (which is the default would not run these functions in the correct order)
+            - example
+
+                this text was already here before event chain
+                then even more text will some up
+                then some more text will some up
+                some text will some up
+
+
+            - this is backwards and why we must set useCase to true
+
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+let varName = document.getElementByIdID("myHTMLelementIDname")
+let otherVarName = document.getElementByIdID("myOtherHTMLelementIDname")
+
+varName.addEventListener("click"), mainEvent, true);
+
+    function mainEvent() {
+        varName.style.background="lightblue"
+    }
+
+otherVarName.addEventListener("mouseover"), firstAttraction);
+
+    function firstAttraction () {
+        otherVarName.style.background = "darkkhaki"
+    }
+
+otherOtherVarName.addEventListener("click", firstAct, true) // set true now if continuing chain 
+
+    function firstAct () {
+        otherOtherVarName.textContent = "some text will some up"
+    }
+
+otherOtherVarName.addEventListener("click", Act1scene1, true)
+
+    function Act1scene1() {
+
+        otherOtherVarName.textContent = otherOtherVarName.textContent += "then some more text will some up"
+    }
+
+otherOtherVarName.addEventListener("click", Act1scene2, true)
+
+    function Act1scene2() {
+        otherOtherVarName.textContent = otherOtherVarName.textContent += "then even more text will some up"
+    }
+
+
+
+
+Example event linking for single path event chain (manipulating two html elements simultaneously as the relate to each other)
+
+
+
+
+__________________________________________________________________________________________________________________________
+
+
+// function to kill Pet
+
+slowlyDying = () => {
+
+    // this.property selects the property
+    // ++ increments the current stat level (not the total)
+        // in this example, found @ example code shared by Jonny in breakout room, 1 = default stat 10 = dead
+            // example pulled from inside of class creator after the constructor function
+    // this same type of function would be useful in concepts related to leveling up that I would also like to implement
+     // after MVP tasks completed
+
+        this.hunger++
+        this.sleepiness++
+        this.boredom++
+}
+
+// create a fn to make the characters stats to be permanently decreasing
+    // use an arrow fn to pass through an anonymous that decreases all current stats
+        // set this.property to --
+killDeminiarme = () => {
+    this.hunger = //property stat total - the number of points to take away for every X seconds
+    this.sleepiness = 
+    this.boredom = 
+}
+
+
+
+____________________________________________________________________________________________
+
+
