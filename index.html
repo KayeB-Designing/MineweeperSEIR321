@@ -11,54 +11,51 @@
     <link rel="stylesheet" href="styles.css">
     <script src="main.js" defer></script>
 </head>
-<body class="bodyParent">
-    <header class="bodyChild">
-        <h1 class="headerChild HeaderParent">Minesweeper</h1>
-        <h2 class="headerChild"><span class="statsBanner">Stats will go here</span></h2>
-    </header>
-    <main class="bodyChild mainParent">
-        <h2>Gameboard</h2>
-        <div id="boardBase">
-            <div class="gameTile" id="1"></div>
-            <div class="gameTile" id="2"></div>
-            <div class="gameTile" id="3"></div>
-            <div class="gameTile" id="4"></div>
-            <div class="gameTile" id="5"></div>
-            <div class="gameTile" id="6"></div>
-            <div class="gameTile" id="7"></div>
-            <div class="gameTile" id="8"></div>
-            <div class="gameTile" id="9"></div>
-            <div class="gameTile" id="10"></div>
-            <div class="gameTile" id="11"></div>
-            <div class="gameTile" id="12"></div>
-            <div class="gameTile" id="13"></div>
-            <div class="gameTile" id="14"></div>
-            <div class="gameTile" id="15"></div>
-            <div class="gameTile" id="16"></div>
-            <div class="gameTile" id="17"></div>
-            <div class="gameTile" id="18"></div>
-            <div class="gameTile" id="19"></div>
-            <div class="gameTile" id="20"></div>
-            <div class="gameTile" id="21"></div>
-            <div class="gameTile" id="22"></div>
-            <div class="gameTile" id="23"></div>
-            <div class="gameTile" id="24"></div>
-            <div class="gameTile" id="25"></div>
+<body class="outlineGrid">
+<header class="outlineGridChild headingGrid">
+    <h1 class="headingGridChild1">Minesweeper</h1>
+    <h2 class="headingGridChild2">Stats and Such</h2>
+</header>
+<main class="outlineGridChild gameboardGrid">
+    Gameboard grid area
+    <div class="gameBoardGridChild tileGrid">Actual Gameboard
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
         </div>
-    </main>
-    <!-- <aside class="bodyChild asideParent">
-        <h2>Game board Will go under this heading</h2>
-        <div ></div>
-    </aside> -->
-    <footer class="bodyChild footerParent">
-        <!-- <h3 class="footerChild">This will house some buttons</h3> -->
-        <div class="footerChild divParent">
-            <button class="divChild" id="startBtn">Start</button>
-            <button class="divChild" id="softResetBtn">Reset Board</button>
-            <!-- <button class="divChild" id="perimetersBtn">Perimeters</button>
-            <button class="divChild" id="hardResetBtn">Reset Scores</button>
-            <button class="divChild" id="helpBtn">Help</button> -->
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
         </div>
-    </footer>
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+        </div>
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+        </div>
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+        </div>
+    </div>
+
+</main>
 </body>
 </html>

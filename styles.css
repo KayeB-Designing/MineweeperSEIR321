@@ -9,48 +9,41 @@ body {
     grid-column: 1;
 }
 
-header {
-    background-color: rgba(0, 255, 255, 0.199);
-    margin: .5rem;
-    grid-row: 1;
-    grid-column: 1;
-    height: 8rem;
+.outlineGrid {
+    background-color: blueviolet;
 }
 
-
-main {
-    background-color: rgba(0, 0, 255, 0.164);
-    margin: .5rem;
-    grid-row: 2;
-    grid-column: 1;
-    height: 20rem;
-    justify-content: space-around;
+.outlineGridChild {
+    background-color: aqua;
 }
 
-#boardBase {
+.headingGrid {
+    grid-template-columns: 3;
+    grid-template-rows: 2;
+}
+
+.headingGridChild1 {
+    color: black;
+    background-color: darkmagenta;
+}
+
+.headingGridChild2 {
+    color: rgb(255, 238, 6);
+    background-color: rgb(236, 55, 85);
+}
+
+.gameboardGrid {
+    background-color: chartreuse;
+    grid-template-columns: 1;
+    grid-template-rows: 1;
+}
+
+.tileGrid {
+    background-color: coral;
+    grid-template-columns: 5;
+    grid-template-rows: 5;
+}
+
+.tiles {
     background-color: white;
-    margin: 1rem;
-    width: 15rem;
-    height: 15rem;
 }
-
-/* aside {
-    background-color: rgba(255, 255, 0, 0.479);
-    margin: .5rem;
-    grid-row: 1/4;
-    grid-column: 2;
-} */
-
-footer {
-    background-color: rgba(255, 99, 71, 0.281);
-    margin: .5rem;
-    grid-row: 3;
-    grid-column: 1;
-    padding-bottom: 1.5rem;
-}
-
-/* .divChild {
-    height: 2rem;
-    width: 9rem;
-    margin: 0 .5rem;
-} */
