@@ -1,0 +1,38 @@
+    Gameboard grid area
+    <div class="gameBoardGridChild tileGrid">Actual Gameboard
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+        </div>
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+        </div>
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+        </div>
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+        </div>
+        <div class="tileGridRow">
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+            <button class="tiles" id="">T</button>
+        </div>
+    </div>

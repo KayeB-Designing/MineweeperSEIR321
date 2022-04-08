@@ -1,0 +1,19 @@
+body {
+    background-color: brown;
+}
+
+.gameboardGrid {
+    height: 25rem;
+    width: 25rem;
+    background-color: aqua;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gameboardGrid div {
+    width: 5rem;
+    height: 5rem;
+    background-color: blue;
+}
+
+
