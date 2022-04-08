@@ -17,9 +17,10 @@ body {
 }
 
 
-To verify bomb placement
+/* To verify bomb placement */
 
-div.bomb {
+div.mine{
     background-color: rgb(220, 217, 20);
 }
+
 

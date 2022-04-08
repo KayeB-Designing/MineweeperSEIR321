@@ -41,12 +41,24 @@ globalScope: {
                 let perimeterTotal = 0
                 const leftEdgeTile = (i % width === 0)
                 const rightEdgeTile = (i % width === width-1)
+                const topEdgeTile = (i >= 0 && i < width)
+                const bottomEdgeTile = (i >= (size-width) && i < size)
 
                 if(tiles[i].classList.contains('safe')) {
+                    // check to right
                     if(i > 0 && !leftEdgeTile && tiles[i-1].classList.contains('mine'))
                         perimeterTotal++
-                    if(i > 9 && !rightEdgeTile && tiles[i+1 -width].classList.contains('mine'))
+                    // check to left
+                    if(i > width -1 && !rightEdgeTile && tiles[i+1].classList.contains('mine'))
                         perimeterTotal++
+                    // check underneath
+                    if(i >= 0 && i < tiles.length && !bottomEdgeTile && tiles[(i + width)].classList.contains('mine'))
+                        perimeterTotal++
+                    // check above
+                    if(i >= width && tiles[i - width].classList.contains('mine'))
+                        perimeterTotal++
+                    // check diagonal forwards
+                    // check diagonal backwards
                     tiles[i].setAttribute('perimeterValue', perimeterTotal)
                     
                 }
@@ -146,8 +158,15 @@ globalScope: {
                                         // create a const variable check for right edges
                                     //if the tile index number is greater than 0 and isnt a left edge and also the index number to the left (index - 1) contains a bomb then increase the numerical value for the safe squares by 1 
                                         // set a new tile attribute and console log to see if our perimeter numbers are working
-                                    // check for numbers above and below on grid
-                                        // make sure we ignore the tile sides that are on the top and bottom of the board
+
+                                    console.log(`elements show correct perimeter values`)
+
+                    // check for numbers above and below on grid
+                        // make sure we ignore the tile sides that are on the top and bottom of the board
+                            // create const variable for top edge tiles = i >= 0 && i < width
+                                //if i >= 0 && i < width
+                            // create const variable for bottom edge tiles = i >= (width*width-width) && i < width*width
+                                    
 
 
                     console.log()
