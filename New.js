@@ -112,6 +112,18 @@ globalScope: {
 
                     console.log(`CSS div.bomb bg-color changed to verify
                     As well as refreshed numerous times to verify randomness of bomb placement`)
+
+                    // the next step is to get numbers around my mines
+                    // need another for foop 
+                        // for (let i = 0; i < the length of the tile array; i++)
+                            // so for each tile in the tiles list do this
+                                // check the id's around it to define it's perimeter
+                                    // check for numbers left and right on grid
+                                        // make sure we ignore the tile side that are on the edges of the board
+                                    // check for numbers above and below on grid
+                                        // make sure we ignore the tile sides that are on the top and bottom of the board
+
+
                     console.log()
 
 
