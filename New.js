@@ -16,7 +16,7 @@ globalScope: {
 
         function startGame() {
 
-            const activeMines = Array(minesTotal).fill(`💣`)
+            const activeMines = Array(minesTotal).fill(`bomb`)
             const emptyTiles = Array(size - minesTotal).fill(`safe`)
             let debugMsg 
             const activeGame = emptyTiles.concat(activeMines)
@@ -26,9 +26,7 @@ globalScope: {
             for(let i = 0; i < size; i++){
                 const tile = document.createElement('div')
                 tile.setAttribute('id', i)
-
-                
-
+                tile.classList.add(activeGameShuffled[i])
                 gameBoard.appendChild(tile)
                 tiles.push(tile)
                 debugMsg = `Mines Total: ${minesTotal} 
@@ -73,48 +71,53 @@ globalScope: {
                     // insisde the start game fn create an array to hold placed bombs 
                     // set a const variable named activeMines = 
                     // use the Array() method to pass through the mines total
+                        // The Array() constructor is used to create Array objects
+                            // A JavaScript array is initialized with the given elements
                     // use the .fill method to pass through a string value for the mines
+                        // .fill() fills all the elements with the value passed as the arguement
+                            // .fill("HTMLattribute", valueAsAVariable || "value as a string")
                     // create a const variable named emptyTiles =
                     // use the Array() to pass through the total tiles - tiles with mines
                     // use the .fill method to pass through a string value for not a mine
                     
 
-                    console.log(`Debugging verification inside fn`)
+                    console.log(`Debugging verification inside fn: debugMsg `)
 
                     // combine the two new arrays and mix them up randomly
                     // set a const variable named activeGame = 
                     // use the .concat() on the safe tiles array and pass through the active mines array
+                        // .concat() is applied to one array and passed another array as an arguentment and joins them together
+                            // adds the array passed as an argument onto the end of the array the method was applied to
                     // set a const variable named activeGameShuffled =
                     // using the .sort() on the active game array
+                        // sort() method sorts an array alphabetically
                     // pass through another fn to get a random number using math.rando
                     // then subtract 0.5 so is goes somewhere in the middle of the array
                         // -1 = the begging of the array
-                        // -0 = the end of the array
+                        // -0 = the end of the array (same as math.rando with nothing following it)
 
-                    console.log(`Debugging verification inside fn`)
+                    console.log(`Displays above in Code Scope`)
 
-                    // go back into the for loop and give each tile a class relative to it's fill value (active mine vs safe tile)
+                    // go back into the for loop and give each tile a class relative to it's fill value 
+                        // (active mine vs safe tile)
+                        // use element.classList
+                            // Element.classList is a read-only property that returns a live DOMTokenList collection of the class attributes of the element.
+                                // The DOMTokenList interface represents a set of space-separated tokens.
+                                    // A DOMTokenList is indexed beginning with 0 as with JavaScript Array objects.
+                                        // so essentially we're getting a list of classes set to tile elements
+                            // Although the classList property itself is read-only, you can modify its associated DOMTokenList using the add(), remove(), replace(), and toggle() methods.
+                                // Using classList is a convenient alternative to accessing an element's list of classes as a space-delimited string via element.className.
+                                    // so essentially this is a DRY way to add a class to each tile div created
+                        // element.classList(arrayName[i]) <- because we are doing this for each item in the array
+
+                    console.log(`CSS div.bomb bg-color changed to verify
+                    As well as refreshed numerous times to verify randomness of bomb placement`)
                     console.log()
-                    console.log()
 
 
-                console.groupEnd(``)
+                console.groupEnd(`Debugging Scope`)
             }
 
-            debuggingScope1: {
-                console.groupCollapsed(`Debugging Scope`)
-                console.groupEnd(``)
-            }
-
-            debuggingScope1: {
-                console.groupCollapsed(`Debugging Scope`)
-                console.groupEnd(``)
-            }
-
-            debuggingScope1: {
-                console.groupCollapsed(`Debugging Scope`)
-                console.groupEnd(``)
-            }
     console.groupEnd(`Code Scope`)
 }
 
