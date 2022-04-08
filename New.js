@@ -16,7 +16,7 @@ globalScope: {
 
         function startGame() {
 
-            const activeMines = Array(minesTotal).fill(`bomb`)
+            const activeMines = Array(minesTotal).fill(`mine`)
             const emptyTiles = Array(size - minesTotal).fill(`safe`)
             let debugMsg 
             const activeGame = emptyTiles.concat(activeMines)
@@ -36,6 +36,22 @@ globalScope: {
                 Active Game Shuffled Array ${activeGameShuffled}`
             }
             console.log(debugMsg)
+
+            for(let i = 0; i < tiles.length; i++) {
+                let perimeterTotal = 0
+                const leftEdgeTile = (i % width === 0)
+                const rightEdgeTile = (i % width === width-1)
+
+                if(tiles[i].classList.contains('safe')) {
+                    if(i > 0 && !leftEdgeTile && tiles[i-1].classList.contains('mine'))
+                        perimeterTotal++
+                    if(i > 9 && !rightEdgeTile && tiles[i+1 -width].classList.contains('mine'))
+                        perimeterTotal++
+                    tiles[i].setAttribute('perimeterValue', perimeterTotal)
+                    
+                }
+
+            }
             console.log()
         }
 
@@ -120,6 +136,16 @@ globalScope: {
                                 // check the id's around it to define it's perimeter
                                     // check for numbers left and right on grid
                                         // make sure we ignore the tile side that are on the edges of the board
+                                            // is the tile index = 0 if divided by the width
+                                                // tile 0 = 0 if 0 % 5 
+                                                    // index 0 and all index numbers that are a multiple of five are on the left edge (0,5,10,15,20)
+                                                // tile 4 = width -1 (4) if 0 % 5 
+                                                    // index 4 and all index numbers that are in in the places behind the multiples of the width
+                                                        // width -1 = 4, width*2 -1 = 9 etc.
+                                        // create a const variable to check for left 
+                                        // create a const variable check for right edges
+                                    //if the tile index number is greater than 0 and isnt a left edge and also the index number to the left (index - 1) contains a bomb then increase the numerical value for the safe squares by 1 
+                                        // set a new tile attribute and console log to see if our perimeter numbers are working
                                     // check for numbers above and below on grid
                                         // make sure we ignore the tile sides that are on the top and bottom of the board
 
