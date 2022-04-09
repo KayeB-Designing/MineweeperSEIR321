@@ -42,7 +42,7 @@ globalScope: {
                 const leftEdgeTile = (i % width === 0)
                 const rightEdgeTile = (i % width === width-1)
                 const topEdgeTile = (i >= 0 && i < width)
-                const bottomEdgeTile = (i >= (size-width) && i < size)
+                const bottomEdgeTile = (i >= ((width*width)-width) && i < width*width)
 
                 if(tiles[i].classList.contains('safe')) {
                     // check to right
@@ -52,12 +52,15 @@ globalScope: {
                     if(i > width -1 && !rightEdgeTile && tiles[i+1].classList.contains('mine'))
                         perimeterTotal++
                     // check underneath
-                    if(i >= 0 && i < tiles.length && !bottomEdgeTile && tiles[(i + width)].classList.contains('mine'))
+                    if(i < size && !bottomEdgeTile && tiles[i+width].classList.contains('mine'))
                         perimeterTotal++
                     // check above
-                    if(i >= width && tiles[i - width].classList.contains('mine'))
+                    if(i >= width && !topEdgeTile && tiles[i - width].classList.contains('mine'))
                         perimeterTotal++
                     // check diagonal forwards
+                        // bl corner
+                    if(i > width && i <size && !leftEdgeTile && i < size && tiles[i - width+1].classList.contains('mine'))
+                        perimeterTotal++
                     // check diagonal backwards
                     tiles[i].setAttribute('perimeterValue', perimeterTotal)
                     
@@ -166,10 +169,15 @@ globalScope: {
                             // create const variable for top edge tiles = i >= 0 && i < width
                                 //if i >= 0 && i < width
                             // create const variable for bottom edge tiles = i >= (width*width-width) && i < width*width
-                                    
 
+                    console.log(`refreshed multiple times to verify T+B+L+R have correct perimeter value totals being logged`)
 
-                    console.log()
+                    // check for forward diagonal corners (BL+TR)
+                        // BL = index + (width - 1)
+                        // TR = index - (width + 1)
+                    // check for backwards diagonal corners (TL+BR)
+                        // TL = index - (width + 1)
+                        // BR = index + (width + 1)
 
 
                 console.groupEnd(`Debugging Scope`)
