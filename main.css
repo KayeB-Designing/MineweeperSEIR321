@@ -19,8 +19,21 @@ body {
 
 /* To verify bomb placement */
 
+
+
+div.tile {
+    background-color: blueviolet;
+}
+
 div.mine{
     background-color: rgb(220, 217, 20);
 }
 
 
+div.clickedTile {
+    background-color: rgb(20, 220, 37);
+}
+
+div.clickedTile.mine {
+    background-color: darkred;
+}

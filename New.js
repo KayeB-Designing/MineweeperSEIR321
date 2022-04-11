@@ -21,6 +21,8 @@ globalScope: {
         const mineDisplay = '💣'
         // let perimeterDisplay
 
+        // const popColor = document.getElementsByClassName("tile").style.backgroundColor = '#0f0'
+
         const activeMines = Array(minesTotal).fill(`mine`)
             const emptyTiles = Array(size - minesTotal).fill(`safe`)
             let debugMsg 
@@ -39,6 +41,7 @@ globalScope: {
                 tile.setAttribute('index', i)
                 // tile.setAttribute('perimeterValue', perimeterTotal)
                 tile.classList.add(activeGameShuffled[i])
+                tile.classList.add('tile')
                 gameBoard.appendChild(tile)
                 tiles.push(tile)
                 tile.addEventListener('click', function(e){
@@ -108,6 +111,7 @@ globalScope: {
 
             tile.setAttribute('clicked', true)
             tile.setAttribute('currentClicked', true)
+            tile.classList.add('clickedTile')
 
         
             // tiles.forEach(tile => {
@@ -115,8 +119,18 @@ globalScope: {
 
             if(tile.classList.contains('safe') && tile.hasAttribute('clicked') && tile.hasAttribute('currentClicked')) {
                 
+
+                if(tile.id > 0) {
                     tile.innerText = tile.id
+                    console.log('popped safe with perimeter value')
+                } else {
+                    tile.innerHTML = popColor
                     console.log('popped safe')
+                }
+
+
+                    // tile.innerText = tile.id
+                    // console.log('popped safe')
             
             }
 
