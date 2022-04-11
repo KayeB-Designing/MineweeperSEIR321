@@ -7,10 +7,16 @@ globalScope: {
 
         const gameBoard = document.querySelector('.gameboardGrid')
         let width = 5
-        let size = width * width
+        let size = (width * width)
         let tiles = []
 
         let minesTotal = 2
+
+        let perimeterTotal
+        
+        const mineExplosionDisplay = "💥"
+        const mineDisplay = "💣"
+
         
         
 
@@ -29,6 +35,9 @@ globalScope: {
                 tile.classList.add(activeGameShuffled[i])
                 gameBoard.appendChild(tile)
                 tiles.push(tile)
+                tile.addEventListener('click', function(e){
+                    clickTile(tile)
+                })
                 debugMsg = `Mines Total: ${minesTotal} 
                 Mines Array: ${activeMines} 
                 Safe Tiles Array: ${emptyTiles} 
@@ -38,30 +47,45 @@ globalScope: {
             console.log(debugMsg)
 
             for(let i = 0; i < tiles.length; i++) {
-                let perimeterTotal = 0
+                perimeterTotal = 0
                 const leftEdgeTile = (i % width === 0)
-                const rightEdgeTile = (i % width === width-1)
-                const topEdgeTile = (i >= 0 && i < width)
-                const bottomEdgeTile = (i >= ((width*width)-width) && i < width*width)
+                const rightEdgeTile = (i % width === (width - 1))
 
                 if(tiles[i].classList.contains('safe')) {
+
+                    // check tile above
+                    if(i > width && i < size && tiles[i-width].classList.contains('mine'))
+                        perimeterTotal++
+
+                    // check tile below
+                    if(i >= width && tiles[i - width].classList.contains('mine'))
+                        perimeterTotal++
+
+                    // check to left
+                    if(i > 0 && !rightEdgeTile && tiles[i+1].classList.contains('mine'))
+                        perimeterTotal++
+
                     // check to right
                     if(i > 0 && !leftEdgeTile && tiles[i-1].classList.contains('mine'))
                         perimeterTotal++
-                    // check to left
-                    if(i > width -1 && !rightEdgeTile && tiles[i+1].classList.contains('mine'))
+
+                    // top right corner tile
+                    // if(i >= width && i < tiles.length && tiles[(i+width)-1] !== leftEdgeTile && tiles[(i+width)-1].classList.contains('mine'))
+                    //     perimeterTotal++
+                    
+                    // top left corner tile
+                    // if(i >= 0 && i < size && !rightEdgeTile && tiles[(i+width)+1] !== rightEdgeTile && tiles[i+width+1].classList.contains('mine'))
+                    //     perimeterTotal++
+
+                    // bottom right corner tile
+                    if(i < size-width && (tiles[(i -width +1)]) < tiles.length && !rightEdgeTile && tiles[(i -width +1)].classList.contains('mine'))
                         perimeterTotal++
-                    // check underneath
-                    if(i < size && !bottomEdgeTile && tiles[i+width].classList.contains('mine'))
+
+                    // bottom left corner
+                    if(i < size-width && (tiles[(i -width -1)]) < tiles.length && !rightEdgeTile && tiles[(i -width -1)].classList.contains('mine'))
                         perimeterTotal++
-                    // check above
-                    if(i >= width && !topEdgeTile && tiles[i - width].classList.contains('mine'))
-                        perimeterTotal++
-                    // check diagonal forwards
-                        // bl corner
-                    if(i > width && i <size && !leftEdgeTile && i < size && tiles[i - width+1].classList.contains('mine'))
-                        perimeterTotal++
-                    // check diagonal backwards
+                
+
                     tiles[i].setAttribute('perimeterValue', perimeterTotal)
                     
                 }
@@ -71,6 +95,40 @@ globalScope: {
         }
 
         startGame()
+
+
+        function clickTile(tile) {
+
+            tile.setAttribute('clicked', true)
+
+            if(tile.classList.contains('mine') && clicked === true){
+                tile.innerText = mineExplosionDisplay
+                // tiles.forEach(tile => {
+                //     if(tile.classList.contains('mine') && tile.clicked === false){
+                //         tile.innerText = mineDisplay
+                //     }
+                // });
+                console.log('Game Over')
+            }
+
+            if(tile.classList.contains('safe')) {
+                if(tile.perimeterTotal !== 0) {
+                    console.log('zero')
+                }
+
+                if(tile.perimeterTotal > 0) {
+                    tile.innerText = 'x'
+                    console.log('Number')
+                }
+                
+            }
+        
+
+                
+
+                console.log('tile clicked')
+            }
+
 
             debuggingScope1: {
 
