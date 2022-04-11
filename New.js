@@ -24,10 +24,10 @@ globalScope: {
         // const popColor = document.getElementsByClassName("tile").style.backgroundColor = '#0f0'
 
         const activeMines = Array(minesTotal).fill(`mine`)
-            const emptyTiles = Array(size - minesTotal).fill(`safe`)
-            let debugMsg 
-            const activeGame = emptyTiles.concat(activeMines)
-            const activeGameShuffled = activeGame.sort(() => Math.random()-0.5)
+        const emptyTiles = Array(size - minesTotal).fill(`safe`)
+        let debugMsg 
+        const activeGame = emptyTiles.concat(activeMines)
+        const activeGameShuffled = activeGame.sort(() => Math.random()-0.5)
         
         
 
@@ -79,24 +79,39 @@ globalScope: {
                         perimeterTotal++
 
                     // top right corner tile
-                    // if(i >= width && i < tiles.length && tiles[(i+width)-1] !== leftEdgeTile && tiles[(i+width)-1].classList.contains('mine'))
-                    //     perimeterTotal++
+                    if(i >= width && i < tiles.length && tiles[(i+width)-1] !== leftEdgeTile && tiles[(i+width)-1].classList.contains('mine'))
+                        perimeterTotal++
                     
                     // top left corner tile
-                    // if(i >= 0 && i < size && !rightEdgeTile && tiles[(i+width)+1] !== rightEdgeTile && tiles[i+width+1].classList.contains('mine'))
-                    //     perimeterTotal++
+                    if(i >= 0 && i < size && !rightEdgeTile && tiles[(i+width)+1] !== rightEdgeTile && tiles[i+width+1].classList.contains('mine'))
+                        perimeterTotal++
 
                     // bottom right corner tile
-                    // if(i < size-width && (tiles[(i -width +1)]) < tiles.length && !rightEdgeTile && tiles[(i -width +1)].classList.contains('mine'))
-                    //     perimeterTotal++
+                    if(i < size-width && (tiles[(i -width +1)]) < tiles.length && !rightEdgeTile && tiles[(i -width +1)].classList.contains('mine'))
+                        perimeterTotal++
 
                     // bottom left corner
-                    // if(i < size-width && (tiles[(i -width -1)]) < tiles.length && !rightEdgeTile && tiles[(i -width -1)].classList.contains('mine'))
-                    //     perimeterTotal++
+                    if(i < size-width && (tiles[(i -width -1)]) < tiles.length && !rightEdgeTile && tiles[(i -width -1)].classList.contains('mine'))
+                        perimeterTotal++
                 
+                     
+                    
 
-                    tiles[i].setAttribute('perimeterMine', true)
+                    
                     tiles[i].setAttribute('id', perimeterTotal)
+
+                    
+
+                    if(perimeterTotal > 0) {
+                        tiles[i].setAttribute('perimeterMine', true)
+                        // tiles[i].setAttribute('cleared', true)
+                    }
+
+                    
+                        
+
+                    if(perimeterTotal === 0)
+                        tiles[i].setAttribute('cleared', true)
                     
                 }
 
@@ -106,6 +121,16 @@ globalScope: {
 
         startGame()
 
+        function checkPerimeter(){
+            // define a 9 tile array
+            // if i = the center tile
+            // check every tile around it for a bomb
+                // if top left is a bomb do nothing
+                // if top left is not a bomb re-enter checkPerim() this tile as new center
+                    // continue this cycle until a bomb is found
+                        // once a bomb is found in a top left corner log the perimTot of current center tile
+        }
+
 
         function clickTile(tile) {
 
@@ -113,14 +138,19 @@ globalScope: {
             tile.setAttribute('currentClicked', true)
             tile.classList.add('clickedTile')
 
+            
+
         
-            // tiles.forEach(tile => {
+         
+                
                     
 
             if(tile.classList.contains('safe') && tile.hasAttribute('clicked') && tile.hasAttribute('currentClicked')) {
                 
+                
 
                 if(tile.id > 0) {
+                    tile.setAttribute('cleared', true)
                     tile.innerText = tile.id
                     console.log('popped safe with perimeter value')
                 } else {
@@ -129,8 +159,7 @@ globalScope: {
                 }
 
 
-                    // tile.innerText = tile.id
-                    // console.log('popped safe')
+             
             
             }
 
