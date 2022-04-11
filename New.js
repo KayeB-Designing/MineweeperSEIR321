@@ -13,9 +13,13 @@ globalScope: {
         let minesTotal = 5
 
         let perimeterTotal
+
+        // const tilePerimeterDisplay = tiles.tile.perimeterDisplay
+        // document.getElementById("demo").innerHTML = person;
         
-        const mineExplosionDisplay = "💥"
-        const mineDisplay = "💣"
+        const mineExplosionDisplay = '💥'
+        const mineDisplay = '💣'
+        // let perimeterDisplay
 
         const activeMines = Array(minesTotal).fill(`mine`)
             const emptyTiles = Array(size - minesTotal).fill(`safe`)
@@ -32,7 +36,8 @@ globalScope: {
 
             for(let i = 0; i < size; i++){
                 const tile = document.createElement('div')
-                tile.setAttribute('id', i)
+                tile.setAttribute('index', i)
+                // tile.setAttribute('perimeterValue', perimeterTotal)
                 tile.classList.add(activeGameShuffled[i])
                 gameBoard.appendChild(tile)
                 tiles.push(tile)
@@ -87,7 +92,8 @@ globalScope: {
                     //     perimeterTotal++
                 
 
-                    tiles[i].setAttribute('perimeterValue', perimeterTotal)
+                    tiles[i].setAttribute('perimeterMine', true)
+                    tiles[i].setAttribute('id', perimeterTotal)
                     
                 }
 
@@ -101,40 +107,36 @@ globalScope: {
         function clickTile(tile) {
 
             tile.setAttribute('clicked', true)
+            tile.setAttribute('currentClicked', true)
 
-            tiles.forEach(tile => {
-                if(tile.classList.contains('mine') && tile.hasAttribute('clicked')){
+        
+            // tiles.forEach(tile => {
+                    
+
+            if(tile.classList.contains('safe') && tile.hasAttribute('clicked') && tile.hasAttribute('currentClicked')) {
+                
+                    tile.innerText = tile.id
+                    console.log('popped safe')
+            
+            }
+
+                if(tile.classList.contains('mine') && tile.hasAttribute('clicked') && tile.hasAttribute('currentClicked')){
                     tile.innerText = mineExplosionDisplay
                     console.log('Game Over')
+
+                    tiles.forEach(tile => {
+                        if(tile.classList.contains('mine') && (tile.hasAttribute('clicked')) === false){
+                            tile.innerText = mineDisplay
+                            console.log('Game Over')
+                        }
+                    })
                 }
 
-                if(tile.classList.contains('mine') && (tile.hasAttribute('clicked')) === false){
-                    tile.innerText = mineDisplay
-                    console.log('Game Over')
-                }
-
-            });
-            // }else if(tile.classList.contains('mine') && (tiles[i].hasAttribute('clicked')) === false) {
-            //     tile.innerText = mineDisplay
-            //     console.log('Show All Mines')
-            // }else(tile.classList.contains('safe') && tile.hasAttribute('clicked')){
-            //     if(tile.perimeterTotal === 0) {
-            //         tile.innerText = 'x' 
-            //         console.log('zero')
-            //     }
-
-                // if(tile.perimeterTotal > 0) {
-                //     tile.innerText =perimeterTotal
-                //     console.log('Number')
-                // }
                 
-            // }
-        
-
-                
-
             console.log('tile clicked')
-            }
+            tile.removeAttribute('currentClicked')
+        }
+
 
 
             debuggingScope1: {
