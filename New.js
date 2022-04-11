@@ -10,23 +10,24 @@ globalScope: {
         let size = (width * width)
         let tiles = []
 
-        let minesTotal = 2
+        let minesTotal = 5
 
         let perimeterTotal
         
         const mineExplosionDisplay = "💥"
         const mineDisplay = "💣"
 
+        const activeMines = Array(minesTotal).fill(`mine`)
+            const emptyTiles = Array(size - minesTotal).fill(`safe`)
+            let debugMsg 
+            const activeGame = emptyTiles.concat(activeMines)
+            const activeGameShuffled = activeGame.sort(() => Math.random()-0.5)
         
         
 
         function startGame() {
 
-            const activeMines = Array(minesTotal).fill(`mine`)
-            const emptyTiles = Array(size - minesTotal).fill(`safe`)
-            let debugMsg 
-            const activeGame = emptyTiles.concat(activeMines)
-            const activeGameShuffled = activeGame.sort(() => Math.random()-0.5)
+            
             
 
             for(let i = 0; i < size; i++){
@@ -78,12 +79,12 @@ globalScope: {
                     //     perimeterTotal++
 
                     // bottom right corner tile
-                    if(i < size-width && (tiles[(i -width +1)]) < tiles.length && !rightEdgeTile && tiles[(i -width +1)].classList.contains('mine'))
-                        perimeterTotal++
+                    // if(i < size-width && (tiles[(i -width +1)]) < tiles.length && !rightEdgeTile && tiles[(i -width +1)].classList.contains('mine'))
+                    //     perimeterTotal++
 
                     // bottom left corner
-                    if(i < size-width && (tiles[(i -width -1)]) < tiles.length && !rightEdgeTile && tiles[(i -width -1)].classList.contains('mine'))
-                        perimeterTotal++
+                    // if(i < size-width && (tiles[(i -width -1)]) < tiles.length && !rightEdgeTile && tiles[(i -width -1)].classList.contains('mine'))
+                    //     perimeterTotal++
                 
 
                     tiles[i].setAttribute('perimeterValue', perimeterTotal)
@@ -101,32 +102,38 @@ globalScope: {
 
             tile.setAttribute('clicked', true)
 
-            if(tile.classList.contains('mine') && clicked === true){
-                tile.innerText = mineExplosionDisplay
-                // tiles.forEach(tile => {
-                //     if(tile.classList.contains('mine') && tile.clicked === false){
-                //         tile.innerText = mineDisplay
-                //     }
-                // });
-                console.log('Game Over')
-            }
-
-            if(tile.classList.contains('safe')) {
-                if(tile.perimeterTotal !== 0) {
-                    console.log('zero')
+            tiles.forEach(tile => {
+                if(tile.classList.contains('mine') && tile.hasAttribute('clicked')){
+                    tile.innerText = mineExplosionDisplay
+                    console.log('Game Over')
                 }
 
-                if(tile.perimeterTotal > 0) {
-                    tile.innerText = 'x'
-                    console.log('Number')
+                if(tile.classList.contains('mine') && (tile.hasAttribute('clicked')) === false){
+                    tile.innerText = mineDisplay
+                    console.log('Game Over')
                 }
+
+            });
+            // }else if(tile.classList.contains('mine') && (tiles[i].hasAttribute('clicked')) === false) {
+            //     tile.innerText = mineDisplay
+            //     console.log('Show All Mines')
+            // }else(tile.classList.contains('safe') && tile.hasAttribute('clicked')){
+            //     if(tile.perimeterTotal === 0) {
+            //         tile.innerText = 'x' 
+            //         console.log('zero')
+            //     }
+
+                // if(tile.perimeterTotal > 0) {
+                //     tile.innerText =perimeterTotal
+                //     console.log('Number')
+                // }
                 
-            }
+            // }
         
 
                 
 
-                console.log('tile clicked')
+            console.log('tile clicked')
             }
 
 
