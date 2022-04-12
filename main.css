@@ -34,6 +34,10 @@ div.clickedTile {
     background-color: rgb(20, 220, 37);
 }
 
+div.emptyPoppedChain {
+    background-color: deeppink;
+}
+
 div.clickedTile.mine {
     background-color: darkred;
 }
