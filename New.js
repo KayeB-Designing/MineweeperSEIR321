@@ -9,8 +9,10 @@ globalScope: {
         let width = 5
         let size = (width * width)
         let tiles = []
+        // const currentIndex = document.querySelectorAll('tile.index')
+        // let perimTiles = []
 
-        let minesTotal = 1
+        let minesTotal = 5
 
         let perimeterTotal
 
@@ -28,6 +30,15 @@ globalScope: {
         let debugMsg 
         const activeGame = emptyTiles.concat(activeMines)
         const activeGameShuffled = activeGame.sort(() => Math.random()-0.5)
+        // const perimTiles = Array(9).fill(`perimeterChecks`)
+
+
+        
+        
+
+        
+
+        
 
         
         
@@ -41,11 +52,17 @@ globalScope: {
             for(let i = 0; i < size; i++){
                 const tile = document.createElement('div')
                 tile.setAttribute('index', i)
+                // const currentIndex = tile.index
+                // tile.classList.add(currentIndex)
                 tile.setAttribute('cleared', false)
                 tile.classList.add(activeGameShuffled[i])
                 tile.classList.add('tile')
+                // const gameTile = document.querySelectorAll(tiles[i].index)
                 gameBoard.appendChild(tile)
                 tiles.push(tile)
+
+                
+
                 tile.addEventListener('click', function(e){
                     clickTile(tile)
                 })
@@ -61,6 +78,8 @@ globalScope: {
                 perimeterTotal = 0
                 const leftEdgeTile = (i % width === 0)
                 const rightEdgeTile = (i % width === (width - 1))
+            
+                
 
                 if(tiles[i].classList.contains('safe')) {
 
@@ -123,10 +142,40 @@ globalScope: {
 
         startGame()
 
-        function checkPerimeter(tile){
+        function checkPerimeter(tile, tileIndex){
 
-            if(tile.hasAttribute('currentClicked') && tile.hasAttribute('cleared')) {
-                console.log('tile being checked')
+            console.log(tile)
+
+            
+
+            console.log(tileIndex)
+            
+
+            if(tile.classList.contains('cleared') && tile.id > 0) {
+                console.log(`tile ${tile.getAttribute('index')} checked as cleared, but not zero`)
+                // console.log(gameTile)
+                
+            
+            }else{
+                
+                console.log(`tile ${tile.getAttribute('index')} cleared, ready to check perimeter`)
+                
+                // console.log(gameTile)
+
+               
+                let rightPerim = parseInt("tile.getAttribute('index')") + parseInt('1', 1)
+                // checkPerimeter(rightPerim)
+                console.log('checking right perim')
+                console.log(rightPerim)
+                // checkPerimeter(tile+1)
+
+                // for(i = 0; i < tiles.length; i++){
+                    // if((newTile.classList.contains('clicked')) === true){
+                        // console.log(rightPerimTile)
+                        // console.log(div.tile.index)
+                    // }
+                // }
+           
             }
 
                 
@@ -136,25 +185,33 @@ globalScope: {
 
         function clickTile(tile) {
 
+            // console.log(tiles[i])
+
             tile.setAttribute('clicked', true)
             tile.setAttribute('currentClicked', true)
             tile.classList.add('clickedTile')
 
+            const tileIndex = tile.getAttribute('index')
+
 
             if(tile.classList.contains('safe') && tile.hasAttribute('clicked') && tile.hasAttribute('currentClicked')) {
                 
-                
+                // console.log(tile.getAttribute('index'))
 
                 if(tile.id > 0) {
                     tile.setAttribute('cleared', true)
                     tile.innerText = tile.id
                     console.log('popped safe with perimeter value')
                     tile.removeAttribute('currentClicked')
+                    checkPerimeter(tile, tileIndex)
                 } else {
                     tile.classList.add('emptyPopped')
                     tile.classList.add('emptyPoppedChain')
                     console.log('popped safe')
-                    checkPerimeter(tile)
+                    tile.removeAttribute('currentClicked')
+                    checkPerimeter(tile, tileIndex)
+                    
+                    // checkPerimeter(newTile)
                 }
 
 
@@ -163,13 +220,16 @@ globalScope: {
             }
 
                 if(tile.classList.contains('mine') && tile.hasAttribute('clicked') && tile.hasAttribute('currentClicked')){
+
+                    // console.log(tile.getAttribute('index'))
+
                     tile.innerText = mineExplosionDisplay
                     console.log('Game Over')
 
                     tiles.forEach(tile => {
                         if(tile.classList.contains('mine') && (tile.hasAttribute('clicked')) === false){
                             tile.innerText = mineDisplay
-                            console.log('Game Over')
+                            // console.log('Game Over')
                         }
                     })
                 }
