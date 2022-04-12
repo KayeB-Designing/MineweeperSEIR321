@@ -2,52 +2,31 @@ globalScope: {
 
     console.clear()
 
-
     console.group(`Code Scope`)
 
         const gameBoard = document.querySelector('.gameboardGrid')
         let width = 5
         let size = (width * width)
         let tiles = []
-        // const currentIndex = document.querySelectorAll('tile.index')
-        // let perimTiles = []
+    
 
         let minesTotal = 5
-
         let perimeterTotal
 
-        // const tilePerimeterDisplay = tiles.tile.perimeterDisplay
-        // document.getElementById("demo").innerHTML = person;
         
         const mineExplosionDisplay = '💥'
         const mineDisplay = '💣'
-        // let perimeterDisplay
-
-        // const popColor = document.getElementsByClassName("tile").style.backgroundColor = '#0f0'
+        
 
         const activeMines = Array(minesTotal).fill(`mine`)
         const emptyTiles = Array(size - minesTotal).fill(`safe`)
         let debugMsg 
         const activeGame = emptyTiles.concat(activeMines)
         const activeGameShuffled = activeGame.sort(() => Math.random()-0.5)
-        // const perimTiles = Array(9).fill(`perimeterChecks`)
-
-
-        
-        
-
-        
-
-        
-
-        
-        
         
 
         function startGame() {
 
-            
-            
 
             for(let i = 0; i < size; i++){
                 const tile = document.createElement('div')
@@ -145,9 +124,6 @@ globalScope: {
         function checkPerimeter(tile, tileIndex){
 
             console.log(tile)
-
-            
-
             console.log(tileIndex)
             
 
@@ -163,7 +139,8 @@ globalScope: {
                 // console.log(gameTile)
 
                
-                let rightPerim = parseInt("tile.getAttribute('index')") + parseInt('1', 1)
+                // let rightPerim = parseInt(tile.getAttribute(index)) + parseInt(1)
+                let rightPerim = parseInt(tileIndex) + parseInt(1)
                 // checkPerimeter(rightPerim)
                 console.log('checking right perim')
                 console.log(rightPerim)
@@ -191,7 +168,7 @@ globalScope: {
             tile.setAttribute('currentClicked', true)
             tile.classList.add('clickedTile')
 
-            const tileIndex = tile.getAttribute('index')
+            let tileIndex = tile.getAttribute('index')
 
 
             if(tile.classList.contains('safe') && tile.hasAttribute('clicked') && tile.hasAttribute('currentClicked')) {
