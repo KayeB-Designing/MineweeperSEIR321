@@ -4,35 +4,39 @@ globalScope: {
 
     console.group(`Code Scope`)
 
+        // grab gameboard
         const gameBoard = document.querySelector('.gameboardGrid')
+        // set gameboard width to 5 tiles
         let width = 5
-        let size = (width * width)
+        // set size and through that the height
+        let size = (width * width) 
+        // create empty tiles array
         let tiles = []
-    
-
+        // set number of mines on board
         let minesTotal = 1
+        // create a dynamic variable to ctrack the number of bombs in a cells perimeter
         let perimeterTotal
-
-        
+        // set mine reveals
         const mineExplosionDisplay = '💥'
         const mineDisplay = '💣'
-        
-
+        // create a new array with an item for each mine set in mines total
         const activeMines = Array(minesTotal).fill(`mine`)
+        // create new array with an item for each empty tile 
         const emptyTiles = Array(size - minesTotal).fill(`safe`)
+        // developement variable (remove upon finalization)
         let debugMsg 
+        // create a new array for a gameboard full of tiles that combines the mines array and the empty tiles array
         const activeGame = emptyTiles.concat(activeMines)
+        // create a new array with the active game tiles being shuffled
         const activeGameShuffled = activeGame.sort(() => Math.random()-0.5)
 
-        // let tileIndex
 
-        
-        
 
         function startGame() {
 
 
             for(let i = 0; i < size; i++){
+                
                 const tile = document.createElement('div')
                 tile.setAttribute('index', i)
                 tile.setAttribute('cleared', false)
@@ -156,7 +160,7 @@ globalScope: {
             else{
 
                 
-                    console.log(`tile ${tileIndex} cleared, ready to check perimeter`)
+                console.log(`tile ${tileIndex} cleared, ready to check perimeter`)
                 
                 let topLeftPerim = parseInt(tileIndex) - parseInt(width) - parseInt(1)
 
